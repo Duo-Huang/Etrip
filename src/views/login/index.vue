@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <h1 class="title">{{$t('hello')}}</h1>
+    <h1 class="title">{{$t('language.appname')}}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "app"
+  name: "Login"
 };
 </script>
 

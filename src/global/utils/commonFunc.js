@@ -30,3 +30,21 @@ export const setCookie = (key, value, expires) => {
     }
     document.cookie = `${key}=${value}`;
 }
+
+export const addOrReplaceUrlParams = (key, value) => {
+    const queryStringArr = window.location.search.substring(1).split('&');
+    const newQueryString = queryStringArr.reduce((result, item, index, arr) => {
+        if (item.indexOf(`${key}=`) >= 0) {
+            console.log(result, item, index, arr)
+            return `${result}&${key}=${value}`;
+        } else if (index === arr.length - 1) {
+            return `${result}&${item}&${key}=${value}`;
+        }
+        return `${result}&${item}`;
+    }, '');
+    return window.location.href.replace(window.location.search, `?${newQueryString.substring(1)}`);
+}
+
+export const changeLanguage = (lang) => {
+    window.location.replace(addOrReplaceUrlParams('locale', lang));
+}

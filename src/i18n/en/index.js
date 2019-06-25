@@ -1,5 +1,6 @@
 const message = {
-    hello: 'hello world!',
+    login: 'hello, please login!',
+    appname: 'UU Trip',
     phoneNumber: 'phone number',
     password: 'password',
 }

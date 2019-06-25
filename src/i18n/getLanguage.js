@@ -1,4 +1,4 @@
-import { getUrlParams, getCookie, setCookie } from '../utils/commonFunc';
+import { getUrlParams, getCookie, setCookie } from '../global/utils/commonFunc';
 
 const supportLanguage = ['zh', 'en'];
 const defaultLanguage = 'zh';
