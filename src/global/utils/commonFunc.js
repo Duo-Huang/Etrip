@@ -32,17 +32,24 @@ export const setCookie = (key, value, expires) => {
 }
 
 export const addOrReplaceUrlParams = (key, value) => {
-    const queryStringArr = window.location.search.substring(1).split('&');
+    const { href, protocol, host, pathname, search, hash } = window.location;
+    if (!search) {
+        return protocol + '//' + host + pathname + `?${key}=${value}` + hash;
+    }
+    const queryStringArr = search.substring(1).split('&');
+    let replaced = false;
     const newQueryString = queryStringArr.reduce((result, item, index, arr) => {
         if (item.indexOf(`${key}=`) >= 0) {
-            console.log(result, item, index, arr)
-            return `${result}&${key}=${value}`;
-        } else if (index === arr.length - 1) {
-            return `${result}&${item}&${key}=${value}`;
+            replaced = true;
+            result += `&${key}=${value}`;
+        } else if (index === arr.length - 1 && !replaced) {
+            result += `&${item}&${key}=${value}`;
+        } else {
+            result += `&${item}`;
         }
-        return `${result}&${item}`;
+        return result;
     }, '');
-    return window.location.href.replace(window.location.search, `?${newQueryString.substring(1)}`);
+    return href.replace(search, `?${newQueryString.substring(1)}`);
 }
 
 export const changeLanguage = (lang) => {
