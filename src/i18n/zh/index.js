@@ -1,8 +1,14 @@
 const message = {
-    login: '你好，请登录！',
-    appname: '悠悠出行',
-    phoneNumber: '手机号',
-    password: '密码',
+    global: {
+        appname: '悠悠出行',
+        loginTip: '你好，请登录！',
+    },
+    user: {
+        phoneNumber: '手机号',
+        password: '密码',
+        register: '注册',
+        login: '登录'
+    }
 }
 
 export default message;

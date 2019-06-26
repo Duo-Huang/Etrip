@@ -1,8 +1,14 @@
 const message = {
-    login: 'hello, please login!',
-    appname: 'UU Trip',
-    phoneNumber: 'phone number',
-    password: 'password',
+    global: {
+        appname: 'UU Trip',
+        loginTip: 'hello! please login.',
+    },
+    user: {
+        phoneNumber: 'phone number',
+        password: 'password',
+        register: 'register',
+        login: 'login'
+    }
 }
 
 export default message;
