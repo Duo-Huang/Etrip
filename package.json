@@ -1,6 +1,8 @@
 {
   "name": "etrip",
   "version": "0.1.0",
+  "author": "glduo666@163.com",
+  "license": "ISC",
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve",

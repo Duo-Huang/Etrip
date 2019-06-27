@@ -1,7 +1,8 @@
 <template>
   <div :class="$style.container">
     <!-- test code-->
-    <button @click="chageLanguage">chageLanguage</button>
+    <button type="button" @click="chageLanguage">chageLanguage</button>
+    <button type="button" @click="testApi">testAPi</button>
     <!-- test code-->
     <div :class="$style.msg">{{$t('lang.global.loginTip')}}</div>
     <div>
@@ -27,6 +28,28 @@ export default {
       } else {
         changeLanguage("zh");
       }
+    },
+    async testApi() {
+      const res1 = await this.$http.fetch({
+        url: this.$api.LOGIN,
+        method: "post",
+        params: {
+          id: 123
+        },
+        data: {
+          since: 1996
+        }
+      });
+      console.log(res1);
+
+      const res2 = await this.$http.fetch({
+        url: this.$api.LOGIN,
+        method: "get",
+        params: {
+          id: 123
+        }
+      });
+      console.log(res2);
     }
   }
 };

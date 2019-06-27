@@ -1,47 +1,62 @@
-// import axios from 'axios';
+/* eslint-disable */
+import axios from 'axios';
 
-// class Deferred {
-//     promise;
-//     resolve;
-//     reject;
-//     constructor() {
-//         this._promise = new Promise((_resolve, _reject) => {
-//             this.resolve = _resolve;
-//             this.reject = _reject;
-//         })
-//     }
+class Deferred {
+    constructor() {
+        this.promise = new Promise((_resolve, _reject) => {
+            this.resolve = _resolve;
+            this.reject = _reject;
+        })
+    }
 
-//     resolve(arg) {
-//         this.resolve(arg);
-//     }
+    resolve(arg) {
+        this.resolve(arg);
+    }
 
-//     reject(arg) {
-//         this.reject(arg);
-//     }
-// }
+    reject(arg) {
+        this.reject(arg);
+    }
+}
 
-// export class Http {
-//     xhr;
-//     globalConfig;
+export default class Http {
+    constructor({ baseUrl, timeout = 60000, mask = false }) {
+        this.globalConfig = { baseUrl, timeout, mask }
+        this.xhr = axios.create({
+            baseURL: baseUrl,
+            timeout
+        });
+    }
 
-//     constructor({ baseUrl, timeout, mask }) {
-//         this.globalConfig = { baseUrl, timeout, mask }
-//         this.xhr = axios.create({
-//             baseURL: baseUrl,
-//             timeout
-//         });
-//     }
+    fetch({
+        url,
+        method = 'get',
+        params,
+        data,
+        baseUrl,
+        headers,
+        timeout = this.globalConfig.timeout,
+        mask = this.globalConfig.mask
+    }) {
+        const config = { ...{ timeout, mask }, ...arguments[0] };
+        const { mask: isShowMask, ...reqConfig } = config;
+        if (isShowMask) {
+            // TODO: show mask loading...
+        }
+        const defer = new Deferred();
+        this.xhr(reqConfig).then((response) => {
+            if (isShowMask) {
+                // TODO: hide mask loading
+            }
+            if (response.status === 200) {
+                defer.resolve(response);
+            } else {
+                // 待处理
+            }
+        }).catch((err) => {
+            defer.reject(err);
+        });
 
-//     fetch({
-//         url, method,
-//         params = '',
-//         baseUrl = '',
-//         headers = {},
-//         timeout = this.globalConfig.timeout,
-//         mask = this.globalConfig.mask
-//     }) {
-//         this.xhr()
-//     }
+        return defer.promise;
+    }
 
-
-// }
+}

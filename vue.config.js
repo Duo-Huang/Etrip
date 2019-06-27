@@ -1,7 +1,13 @@
 module.exports = {
     configureWebpack: {
         devServer: {
-            disableHostCheck: true
+            disableHostCheck: true,
+            historyApiFallback: false,
+            proxy: {
+                [process.env.VUE_APP_BASE_URL]: {
+                    target: process.env.VUE_APP_BASE_SERVER
+                }
+            }
         }
     },
     chainWebpack: config => {
