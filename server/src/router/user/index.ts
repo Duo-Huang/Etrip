@@ -10,4 +10,9 @@ export default (router: Router) => {
         res.json('hello, world');
     });
 
+    router.get('/product/:id', (req: Request, res: Response) => {
+        console.log(req.params.id);
+        res.json(`product id is ${req.params.id}`);
+    });
+
 };

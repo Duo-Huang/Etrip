@@ -7,10 +7,10 @@
     <div :class="$style.msg">{{$t('lang.global.loginTip')}}</div>
     <div>
       <span>{{$t('lang.user.phoneNumber')}}:</span>
-      <input type="text">
-      <br>
+      <input type="text" />
+      <br />
       <span>{{$t('lang.user.password')}}:</span>
-      <input type="text">
+      <input type="text" />
     </div>
     <button>{{$t('lang.user.login')}}</button>
     <button>{{$t('lang.user.register')}}</button>
@@ -30,8 +30,9 @@ export default {
       }
     },
     async testApi() {
+      // 1
       const res1 = await this.$http.fetch({
-        url: this.$api.LOGIN,
+        url: this.$http.apis.LOGIN,
         method: "post",
         params: {
           id: 123
@@ -41,15 +42,25 @@ export default {
         }
       });
       console.log(res1);
-
+      // 2
       const res2 = await this.$http.fetch({
-        url: this.$api.LOGIN,
+        url: this.$http.apis.LOGIN,
         method: "get",
         params: {
           id: 123
         }
       });
       console.log(res2);
+
+      // 3
+      this.$http
+        .fetch({
+          url: this.$http.formmatUrl(this.$http.apis.product, { id: 123 }),
+          method: "get"
+        })
+        .then(res => {
+          console.log(res.data);
+        });
     }
   }
 };

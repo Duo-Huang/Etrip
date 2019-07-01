@@ -1,5 +1,6 @@
 /* eslint-disable */
 import axios from 'axios';
+import * as apis from './apis';
 
 class Deferred {
     constructor() {
@@ -25,6 +26,7 @@ export default class Http {
             baseURL: baseUrl,
             timeout
         });
+        this.apis = apis;
     }
 
     fetch({
@@ -57,6 +59,14 @@ export default class Http {
         });
 
         return defer.promise;
+    }
+
+    formmatUrl(urlSchema, params) {
+        let url = urlSchema;
+        for (const key in params) {
+            url = url.replace(`:${key}`, params[key]);
+        }
+        return url;
     }
 
 }

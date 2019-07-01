@@ -6,7 +6,6 @@ import router from './routers';
 import getLanguage from './i18n/getLanguage';
 import { SET_LOCALE } from './store/types';
 import Http from './global/http';
-import * as api from './global/http/api';
 
 const language = getLanguage('locale');
 
@@ -16,7 +15,6 @@ Vue.prototype.$http = new Http({
   baseUrl: process.env.VUE_APP_BASE_URL,
   timeout: 60000
 });
-Vue.prototype.$api = api;
 
 store.dispatch(SET_LOCALE, language).then(() => {
   const i18n = new VueI18n({
