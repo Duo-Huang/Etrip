@@ -20,9 +20,7 @@ store.dispatch(SET_LOCALE, language).then(() => {
   const i18n = new VueI18n({
     locale: store.state.locale.locale,
     messages: {
-      [store.state.locale.locale]: {
-        lang: store.state.locale.message
-      }
+      [store.state.locale.locale]: store.state.locale.message
     }
   });
   new Vue({

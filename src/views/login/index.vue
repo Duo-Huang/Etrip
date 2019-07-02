@@ -4,16 +4,16 @@
     <button type="button" @click="chageLanguage">chageLanguage</button>
     <button type="button" @click="testApi">testAPi</button>
     <!-- test code-->
-    <div :class="$style.msg">{{$t('lang.global.loginTip')}}</div>
+    <div :class="$style.msg">{{$t('global.loginTip')}}</div>
     <div>
-      <span>{{$t('lang.user.phoneNumber')}}:</span>
+      <span>{{$t('user.phoneNumber')}}:</span>
       <input type="text" />
       <br />
-      <span>{{$t('lang.user.password')}}:</span>
+      <span>{{$t('user.password')}}:</span>
       <input type="text" />
     </div>
-    <button>{{$t('lang.user.login')}}</button>
-    <button>{{$t('lang.user.register')}}</button>
+    <button>{{$t('user.login')}}</button>
+    <button>{{$t('user.register')}}</button>
   </div>
 </template>
 
