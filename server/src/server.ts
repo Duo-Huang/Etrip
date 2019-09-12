@@ -1,13 +1,11 @@
-import express from 'express';
-import chalk from 'chalk';
-import * as config from './config';
-import router from './router';
-import { log } from './utils/commonFunc';
+import app from './app';
 
-const app = express();
 
-app.use(config.BASE_URL, router);
-
-app.listen(config.PORT, () => {
-    log(chalk.green, 'Server is runing at ', config.PORT, '!');
+app.listen(app.get('port'), () => {
+    console.log(
+        '  App is running at http://localhost:%d in %s mode',
+        app.get('port'),
+        app.get('env')
+    );
+    console.log('  Press CTRL-C to stop\n');
 });
