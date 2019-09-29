@@ -6,13 +6,14 @@ import router from './routers';
 import getLanguage from './i18n/getLanguage';
 import { SET_LOCALE } from './store/types';
 import Http from './global/http';
+import { BASE_URL } from './global/constants';
 
 const language = getLanguage('locale');
 
 Vue.config.productionTip = false;
 Vue.use(VueI18n);
 Vue.prototype.$http = new Http({
-  baseUrl: process.env.VUE_APP_BASE_URL,
+  baseUrl: process.env.BASE_URL,
   timeout: 60000
 });
 

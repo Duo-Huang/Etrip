@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  app:
+    image: "nginx:1.14-alpine"
+    ports:
+      - "8080:80"
+    restart: always
+    environment:
+      - "TZ=Asia/Shanghai"
+    container_name: adventure-ui
+    volumes:
+      - ./dist:/data/www
+      - ./etc/nginx:/etc/nginx
+    network_mode: "bridge"
