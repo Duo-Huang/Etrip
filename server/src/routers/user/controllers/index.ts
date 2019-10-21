@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
-import { check, sanitize, validationResult } from "express-validator";
+import { Request, Response, NextFunction } from 'express';
+import { check, sanitize, validationResult } from 'express-validator';
 
 export const postSignup = (req: Request, res: Response, next: NextFunction) => {
 
@@ -13,9 +13,9 @@ export const postSignup = (req: Request, res: Response, next: NextFunction) => {
     //     email: req.body.email,
     //     password: req.body.password
     // });
-    res.json('{signup}')
-}
+    res.json('{signup}');
+};
 
 export const postSignin = (req: Request, res: Response, next: NextFunction) => {
     res.json('signin');
-}
+};
